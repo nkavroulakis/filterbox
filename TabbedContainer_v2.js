@@ -50,10 +50,14 @@ require.config({
                     var tileBackground = colorsService.toString(tileBackgroundRgb, 0.2);
                 }
 
+                //debugger;
+
                 // Paint the border and the background of the object container
                 var tileBorder = colorsService.hexToRgb(colors.palette[layout.borderColor]);
                 $element.find('.tab_container').css('border-color', colorsService.toString(tileBorder));
                 $element.find('.tab_content').css('background-color', tileBackground);
+
+
 
                 return qlik.Promise.resolve();
             },
@@ -70,6 +74,7 @@ require.config({
                     $scope.shouldDisplayDetailsCard = false;
                     $scope.isExpandModeON = false;
                     $scope.initExpandMode = false;
+                    $scope.stackedMode = true;
 
                     $scope.isTabActive = function (tab) {
                         return $scope.isExpandModeON || $scope.activeTab != null && tab.id === $scope.activeTab.id;//new code Expand mode
@@ -102,11 +107,59 @@ require.config({
                         else
                         {
                             $scope.activeTab = $scope.tabItems[index];
+                            //debugger;
+                            
+                            //var htmlId = mItems[layout.listItems[i].qName] + '_' + tid;
+                            //$element.find('.tab_container').append('<div id="' + htmlId + '" class="q-object margin-lr margin-tb" ></div>');
 
+                            //$(".tab_content")[0].append();
+
+                            var extensionId = '#' + $scope.localId + '_' + $scope.activeTab.id;
+                            //console.log('#' + $scope.localId + '_' + $scope.activeTab.id);
                             qlik.currApp().getObject(
-                                $('#' + $scope.localId + '_' + $scope.activeTab.id),
+                                $(extensionId),
+                                $scope.activeTab.objectid
+                            );
+
+                            setTimeout(function () {
+                                var numOfElements = $(extensionId + " .qv-filterpane-column > div").length;
+
+                                var ELEM_HEIGHT = 34;
+                                var ELEM_MARGIN = 10;
+                                var calculatedHeight = (numOfElements * (ELEM_HEIGHT + ELEM_MARGIN)) - ELEM_MARGIN;
+
+                                //debugger;
+
+                                if (numOfElements == 0)
+                                {
+                                    //calc(100 % - 4px)
+                                    $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', "calc(100% - 4px)");
+                                    
+                                }
+                                else { $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");}
+
+                                $(extensionId + " .qv-filterpane-column").css('background-color', "black");
+
+                                //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
+                                //debugger;
+                            }, 1000);
+
+                            $(".qv-object-TabbedContainer_v2 .tab_content").css('background-color', "inherit");
+
+                            
+
+                            //debugger;
+
+                            //debugger;
+
+                            /*
+                            qlik.currApp().getObject(
+                                //$('#' + $scope.localId + '_' + $scope.activeTab.id),
+                                $(".tab_content")[0],
                                 $scope.activeTab.objectid
                             )
+                            */
+
                         }
 
                     }
@@ -170,10 +223,12 @@ require.config({
 
                         for (var item of $scope.tabItems) {
                             //debugger;
+                            
                             qlik.currApp().getObject(
                                 $('#' + $scope.localId + '_' + item.id),
                                 item.objectid
                             )
+                            
                         }
 
                     }
