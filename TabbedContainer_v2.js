@@ -56,6 +56,7 @@ require.config({
                 var tileBorder = colorsService.hexToRgb(colors.palette[layout.borderColor]);
                 $element.find('.tab_container').css('border-color', colorsService.toString(tileBorder));
                 $element.find('.tab_content').css('background-color', tileBackground);
+                $(".qv-object-TabbedContainer_v2 .tab_content").css('background-color', "inherit");
 
 
 
@@ -97,6 +98,46 @@ require.config({
                                 'border-color': colors.inactive.border
                             }
                     }
+
+                    function getExtensionID() {
+                        return '#' + $scope.localId + '_' + $scope.activeTab.id;
+                    };
+
+                    function resizeContainer(activeTabId) {
+                        setTimeout(function () {
+                            var extensionID = '#' + $scope.localId + '_' + activeTabId;
+                            var numOfElements = $(extensionID + " .qv-filterpane-column > div").length;
+                            debugger;
+                            var ELEM_HEIGHT = 34;
+                            var ELEM_MARGIN = 10;
+                            var calculatedHeight = (numOfElements * (ELEM_HEIGHT + ELEM_MARGIN)) - ELEM_MARGIN;
+
+                            //debugger;
+
+                            if (numOfElements == 0) {
+                                //calc(100 % - 4px)
+
+                                //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', "calc(100% - 4px)");
+
+                                $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").each(function (index, element) {
+                                    if ($(element).find(".qv-object-filterpane").length === 0)
+                                    {
+                                        $(element).css('height', "calc(100% - 4px)");
+                                    }
+                                    debugger;
+                                })
+
+                            }
+                            else { $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px"); }
+
+                            $(extensionID + " .qv-filterpane-column").css('background-color', "black");
+
+                            //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
+                            //debugger;
+                        }, 1000);
+
+                    };
+
                     //Expand Collapse new Code
                     $scope.onTabClick = function (index) {
                         $scope.isExpandModeON = false;
@@ -106,6 +147,8 @@ require.config({
                         }
                         else
                         {
+                            
+
                             $scope.activeTab = $scope.tabItems[index];
                             //debugger;
                             
@@ -114,38 +157,16 @@ require.config({
 
                             //$(".tab_content")[0].append();
 
-                            var extensionId = '#' + $scope.localId + '_' + $scope.activeTab.id;
+
+
+                            //var extensionId = '#' + $scope.localId + '_' + $scope.activeTab.id;
                             //console.log('#' + $scope.localId + '_' + $scope.activeTab.id);
                             qlik.currApp().getObject(
-                                $(extensionId),
+                                $(getExtensionID()),
                                 $scope.activeTab.objectid
                             );
-
-                            setTimeout(function () {
-                                var numOfElements = $(extensionId + " .qv-filterpane-column > div").length;
-
-                                var ELEM_HEIGHT = 34;
-                                var ELEM_MARGIN = 10;
-                                var calculatedHeight = (numOfElements * (ELEM_HEIGHT + ELEM_MARGIN)) - ELEM_MARGIN;
-
-                                //debugger;
-
-                                if (numOfElements == 0)
-                                {
-                                    //calc(100 % - 4px)
-                                    $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', "calc(100% - 4px)");
-                                    
-                                }
-                                else { $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");}
-
-                                $(extensionId + " .qv-filterpane-column").css('background-color', "black");
-
-                                //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
-                                //debugger;
-                            }, 1000);
-
-                            $(".qv-object-TabbedContainer_v2 .tab_content").css('background-color', "inherit");
-
+         
+                            resizeContainer($scope.activeTab.id);
                             
 
                             //debugger;
@@ -227,8 +248,11 @@ require.config({
                             qlik.currApp().getObject(
                                 $('#' + $scope.localId + '_' + item.id),
                                 item.objectid
-                            )
-                            
+                            ).then(function () {  })
+
+                            //debugger;
+                            resizeContainer(item.id);
+
                         }
 
                     }
