@@ -1,5 +1,5 @@
 .qv-object-TabbedContainer_v2 {
-  padding-right: 5px;
+  padding-right: 0px;/*remove padding*/
   padding-bottom: 0px;
   padding-top: 0px;
   position: relative;
@@ -52,7 +52,7 @@
   width: calc(100% - 3px);
   background: transparent;
   overflow: auto;
-  height: calc(100% - 33px);
+  height: 100%;/*change the height to fill the grid space container*/
   position: absolute;
   top: 32px;
   padding-top: 1px;
@@ -67,11 +67,11 @@
 
 .qv-object-TabbedContainer_v2 .stacked .tab_container {
   height: calc(100%-4px);
-  background-color:black;
+  background-color:#2E2E2E;/*set black AIG backhround color for the container*/
 }
 
     .qv-object-TabbedContainer_v2 .tab_content {
-        padding: 20px;
+        padding: 20px;/*reduce padding from 20->10*/
         /*height: 200px;*/
         height:0;
         overflow: auto;
@@ -101,37 +101,37 @@
   display: none!important;
   height: 0;
 }
-
+/*Tabs classes*/
 .qv-object-TabbedContainer_v2 .stacked .tab_drawer_heading {
-  background-color: #FFFFFF;
-  color: #fff;
-  border-top: 1px solid #CFCFCF;
-  margin: 0;
-  padding: 5px;
-  display: block;
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-color: #666;
+    background-color: #2E2E2E;/*grey AIG background color for tab*/
+    color: #979797;
+    border-bottom: 1px solid #979797;
+    margin: 0;
+    padding: 5px;
+    display: block;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #666;
 }
 
 .qv-object-TabbedContainer_v2 .stacked .tab_drawer_heading:hover {
-  background-color: #FFFFFF;
-  color: #333;
+  background-color: #2E2E2E;
+  color: #0099CE;
 }
 
 .qv-object-TabbedContainer_v2 .stacked .d_active {
-  background-color: #fff;
-  color: #000;
+  background-color: #2E2E2E;
+  color: #979797;
 }
 
 .qv-object-TabbedContainer_v2 .stacked h3 {
-  font-family:  QlikView Sans, sans-serif;
-  font-size: 13px;
+  font-family:  Arial;
+  font-size: 14px;
   font-weight: normal;
   color: #ccc;
 }
@@ -227,4 +227,12 @@ loading-modal > .dataLoadingModal > .transferring-inner > div.info {
 
 loading-modal > .dataLoadingModal > .transferring-inner > div.qv-loader {
   margin: 10px auto;
+}
+
+/*Create formating for all All Filters - Collapse Filters anchors*/
+a{
+    font-size:14px;
+    font-family:Arial;
+    text-decoration:underline;
+    color: #979797;
 }

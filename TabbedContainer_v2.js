@@ -104,10 +104,15 @@ require.config({
                     };
 
                     function resizeContainer(activeTabId) {
+                        //var resizeInterval = setInterval(function () {
+                            //debugger;
+
+                            /* query selector extensionID + > article .tid an einai adeio return aliws 148 clear interval 
+                            */
                         setTimeout(function () {
                             var extensionID = '#' + $scope.localId + '_' + activeTabId;
                             var numOfElements = $(extensionID + " .qv-filterpane-column > div").length;
-                            debugger;
+                            //debugger;
                             var ELEM_HEIGHT = 34;
                             var ELEM_MARGIN = 10;
                             var calculatedHeight = (numOfElements * (ELEM_HEIGHT + ELEM_MARGIN)) - ELEM_MARGIN;
@@ -120,21 +125,33 @@ require.config({
                                 //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', "calc(100% - 4px)");
 
                                 $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").each(function (index, element) {
-                                    if ($(element).find(".qv-object-filterpane").length === 0)
+                                    if ($(element).find(".daterangepicker-initial-input").length)
                                     {
-                                        $(element).css('height', "calc(100% - 4px)");
+                                        $(element).css('height', "40px");
                                     }
-                                    debugger;
+                                    else if ($(element).find(".qv-object-filterpane").length === 0)
+                                    {
+                                        $(element).css('height', "calc(100 % - 4px)");
+                                    }
+                                    //debugger;
                                 })
 
                             }
-                            else { $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px"); }
+                            else {
+                                //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
+                                $(extensionID + ".tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
+                               
+                            }
 
-                            $(extensionID + " .qv-filterpane-column").css('background-color', "black");
+                            //$(extensionID + " .qv-filterpane-column").css('background-color', "black");
+                            $(extensionID + " .qv-filterpane-column").css('background-color', "#2E2E2E");
+                            $(extensionID + " .qv-object-filterpane").css('border', "0");
+
 
                             //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
                             //debugger;
-                        }, 1000);
+                        }, 200);
+
 
                     };
 
