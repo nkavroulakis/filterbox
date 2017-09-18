@@ -109,8 +109,15 @@ require.config({
 
                             /* query selector extensionID + > article .tid an einai adeio return aliws 148 clear interval 
                             */
-                        setTimeout(function () {
+                        var resizeInterval = setInterval(function () {
+                        //setTimeout(function () {
                             var extensionID = '#' + $scope.localId + '_' + activeTabId;
+
+                            if ($(extensionID + " article").attr('tid') === '')
+                                return;
+
+                        
+
                             var numOfElements = $(extensionID + " .qv-filterpane-column > div").length;
                             //debugger;
                             var ELEM_HEIGHT = 34;
@@ -125,15 +132,22 @@ require.config({
                                 //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', "calc(100% - 4px)");
 
                                 $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").each(function (index, element) {
-                                    if ($(element).find(".daterangepicker-initial-input").length)
+                                    //debugger;
+
+                                    //$(element).css('height', "calc(100% - 4px)");
+
+                                    
+                                    if ($(element).find(".aigdatepicker").length)
                                     {
-                                        $(element).css('height', "40px");
+                                        $(element).css('height', "200");
                                     }
                                     else if ($(element).find(".qv-object-filterpane").length === 0)
                                     {
-                                        $(element).css('height', "calc(100 % - 4px)");
+                                        
+                                        $(element).css('height', "calc(100% - 4px)");
                                     }
                                     //debugger;
+                                    
                                 })
 
                             }
@@ -147,10 +161,10 @@ require.config({
                             $(extensionID + " .qv-filterpane-column").css('background-color', "#2E2E2E");
                             $(extensionID + " .qv-object-filterpane").css('border', "0");
 
-
+                            clearInterval(resizeInterval);
                             //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
                             //debugger;
-                        }, 200);
+                        }, 50);
 
 
                     };
