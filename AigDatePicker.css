@@ -1,0 +1,36 @@
+﻿body
+{
+  
+}
+
+.aigdatepicker {
+    background-color: #2E2E2E;
+    box-sizing: border-box
+}
+
+.aigdatepicker_applyrange-btn {
+    display: inline-block;
+    width: 49%;
+    padding: 10px;
+    background-color: inherit;
+    border: 1px solid #979797;
+    margin: 0;
+}
+
+.aigdatepicker_input {
+    width: calc(50% - 10px);
+    text-align:center;
+}
+
+.aigdatepicker_apply-btn {
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+    background-color: inherit;
+    border: 1px solid #979797;
+    margin: 15px 0px;
+}
+
+.aigdatepicker__formwrapper {
+    padding: 15px;
+}

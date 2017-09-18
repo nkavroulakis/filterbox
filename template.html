@@ -1,62 +1,15 @@
-<div qv-extension ng-cloak stacked-container>
+<div qv-extension style="height: 100%; position: relative; overflow: auto;" class="ng-scope aigdatepicker">
+    <button class="aigdatepicker_applyrange-btn" ng-click="onRangeSelect('YTD')"> YTD </button>
+    <button class="aigdatepicker_applyrange-btn" ng-click="onRangeSelect('QTD')" > QTD </button>
+    <button class="aigdatepicker_applyrange-btn"> Past 12 mo </button>
+    <button class="aigdatepicker_applyrange-btn"> All Time </button>
 
-  <!-- Display error if there are no objects-->
-  <div ng-if="tabItems.length === 0">
-    A tab will show for each item that has a title and an object ID.
-  </div>
-
-  <ul class="tabs with-border" ng-if="(tabItems.length === 1 && !layout.shouldCollapseTabs) || tabItems.length > 1">
-    <li class="buttonTab with-border-no-bottom"
-        ng-repeat="tab in tabItems track by $index"
-        ng-click="onTabClick($index)"
-        ng-class="{
-          'active': isTabActive(tab, activeTab),
-          'tab_last' : tab.id == tabItems[tabItems.length - 1].id }"
-        ng-style="getTabStyles(tab, activeTab)">
-      {{tab.title}}
-    </li>
-  </ul>
-  <div class="tab_container with-border"
-      ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"
-      ng-if="tabItems.length > 0">
-      <a ng-click="collapseAllTabs()" ng-show="!initExpandMode">
-          - Collapse All
-      </a>
-      <a ng-click="expandAllTabs()"  ng-show="initExpandMode">
-          + Expand All
-      </a>
-    <h3 ng-repeat-start="tab in tabItems track by $index"
-        class="tab_drawer_heading"
-        ng-class="{'d_active': isTabActive(tab) }"
-        ng-click="onTabClick($index)">
-        
-        <span ng-if="isTabActive(tab)">
-             -
-        </span>
-        <span ng-if="!isTabActive(tab)">
-            +
-        </span>
-      {{tab.title}}
-    </h3>
-    <div class="buttonsContainer">
-      <export-table-button ng-if="isTabActive(tab)"
-          class="tabOption"
-          active-tab="tab"
-          hide-button="layout.shouldHideExportButton">
-      </export-table-button>
-      <details-card-button ng-if="isTabActive(tab)"
-          class="tabOption"
-          active-tab="activeTab"
-          hide-button="layout.shouldHideDetailsButton"
-          toggle-display-card="toggleDisplayCard()">
-      </details-card-button>
+    <div class="aigdatepicker__formwrapper">
+        <input class="aigdatepicker_input" id="datepicker-start-date" type="text">
+        <span> - </span>
+        <input class="aigdatepicker_input" id="datepicker-end-date" type="text">
+        <button class="aigdatepicker_apply-btn" ng-click="onApply()"> Apply </button>
     </div>
-    <div ng-repeat-end
-        id="{{localId}}_{{tab.id}}"
-        ng-show="isTabActive(tab)"
-        class="tab_content qvobject">
-    </div>
-  </div>
+    
+    
 </div>
-
-<!--  <details-card display-card="shouldDisplayDetailsCard" active-tab="activeTab"></details-card> -->
