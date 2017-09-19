@@ -8,29 +8,37 @@
     box-sizing: border-box
 }
 
-.aigdatepicker_applyrange-btn {
-    display: inline-block;
-    width: 49%;
-    padding: 10px;
-    background-color: inherit;
-    border: 1px solid #979797;
-    margin: 0;
-}
-
 .aigdatepicker_input {
     width: calc(50% - 10px);
     text-align:center;
 }
 
-.aigdatepicker_apply-btn {
+.aigdatepicker__formwrapper {
+    padding: 15px;
+}
+
+.aigdatepicker__td {
+    width: 50%;
+    border-collapse: collapse;
+    border: 1px solid #979797;
+}
+
+.aigdatepicker button {
     padding: 10px;
-    display: inline-block;
     width: 100%;
     background-color: inherit;
     border: 1px solid #979797;
+}
+
+.aigdatepicker_apply-btn {
+    display: inline-block;
     margin: 15px 0px;
 }
 
-.aigdatepicker__formwrapper {
-    padding: 15px;
+button.aigdatepicker__customrange {
+    border-top:0;
+}
+
+button.aigdatepicker__td__applyrange {
+    border: 0;
 }

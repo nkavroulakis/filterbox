@@ -1,10 +1,25 @@
 <div qv-extension style="height: 100%; position: relative; overflow: auto;" class="ng-scope aigdatepicker">
-    <button class="aigdatepicker_applyrange-btn" ng-click="onRangeSelect('YTD')"> YTD </button>
-    <button class="aigdatepicker_applyrange-btn" ng-click="onRangeSelect('QTD')" > QTD </button>
-    <button class="aigdatepicker_applyrange-btn"> Past 12 mo </button>
-    <button class="aigdatepicker_applyrange-btn"> All Time </button>
+    <table>
+        <tr>
+            <td class="aigdatepicker__td">
+                <button class="aigdatepicker__td__applyrange" ng-click="onRangeSelect('YTD')"> YTD </button>
+            </td>
+            <td class="aigdatepicker__td">
+                <button class="aigdatepicker__td__applyrange" ng-click="onRangeSelect('QTD')"> QTD </button>
+            </td>
+        </tr>
+        <tr>
+            <td class="aigdatepicker__td">
+                <button class="aigdatepicker__td__applyrange"> Past 12 mo </button>
+            </td>
+            <td class="aigdatepicker__td">
+                <button class="aigdatepicker__td__applyrange"> All Time </button>
+            </td>
+        </tr>
+    </table>
+    <button class="aigdatepicker__customrange" ng-hide="isCustomRangeActive" ng-click="onClickCustomRange()"> Custom Range </button>
 
-    <div class="aigdatepicker__formwrapper">
+    <div class="aigdatepicker__formwrapper" ng-show="isCustomRangeActive">
         <input class="aigdatepicker_input" id="datepicker-start-date" type="text">
         <span> - </span>
         <input class="aigdatepicker_input" id="datepicker-end-date" type="text">

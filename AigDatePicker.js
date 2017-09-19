@@ -22,7 +22,8 @@ define(["qlik", "text!./template.html", "./jquery-ui.min.js", "css!./jquery-ui.m
 				return qlik.Promise.resolve();
 			},
 			controller: ['$scope', function ( $scope ) {
-				//add your rendering code here
+                //add your rendering code here
+                $scope.isCustomRangeActive = false;
 
                 $scope.startDate = new Date();
                 $("#datepicker-start-date").datepicker({
@@ -41,32 +42,39 @@ define(["qlik", "text!./template.html", "./jquery-ui.min.js", "css!./jquery-ui.m
                     //$("#datepicker-end-date").datepicker();
                     //$("#datepicker-end-date").datepicker("setDate", new Date);
 
-                    $scope.onApply = function () {
-                        console.log($scope.startDate, $scope.endDate);
-                    }
+                $scope.onApply = function () {
+                    console.log($scope.startDate, $scope.endDate);
+                }
 
-                    $scope.onRangeSelect = function (range) {
+                $scope.onRangeSelect = function (range) {
                         
-                        if (range === 'YTD')
-                        {
-                            $scope.endDate = new Date();
-                            var endDateYear = $scope.endDate.getFullYear().toString();
-                            $scope.startDate = new Date(endDateYear);
+                    if (range === 'YTD')
+                    {
+                        $scope.endDate = new Date();
+                        var endDateYear = $scope.endDate.getFullYear().toString();
+                        $scope.startDate = new Date(endDateYear);
 
-                            $("#datepicker-start-date").datepicker("setDate", $scope.startDate);
-                            $("#datepicker-end-date").datepicker("setDate", $scope.endDate);
-                        } else if (range === 'QTD') {
+                        $("#datepicker-start-date").datepicker("setDate", $scope.startDate);
+                        $("#datepicker-end-date").datepicker("setDate", $scope.endDate);
+                    } else if (range === 'QTD') {
 
-                            $scope.endDate = new Date();
-                            var firstQuarterDate = new Date($scope.endDate.getFullYear(), Math.floor($scope.endDate.getMonth()/3) * 3 );
-                            $scope.startDate = firstQuarterDate;
+                        $scope.endDate = new Date();
+                        var firstQuarterDate = new Date($scope.endDate.getFullYear(), Math.floor($scope.endDate.getMonth()/3) * 3 );
+                        $scope.startDate = firstQuarterDate;
 
-                            $("#datepicker-start-date").datepicker("setDate", $scope.startDate);
-                            $("#datepicker-end-date").datepicker("setDate", $scope.endDate);
-
-                        }
+                        $("#datepicker-start-date").datepicker("setDate", $scope.startDate);
+                        $("#datepicker-end-date").datepicker("setDate", $scope.endDate);
 
                     }
+
+                }
+
+                $scope.onClickCustomRange = function () {
+                    $scope.isCustomRangeActive = true
+
+                }
+
+                    
 
 
 			}]
