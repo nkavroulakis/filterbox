@@ -15,21 +15,21 @@
   width: 100%;
 }
 
-.qv-object-TabbedContainer_v2 ul.tabs li {
-  float: left;
-  margin: 0;
-  cursor: pointer;
-  padding: 0px 35px;
-  height: 27px;
-  line-height: 27px;
-  background-color: rgb(242, 242, 242);
-  border: 1px solid rgb(229, 229, 229);
-  color: black;
-  overflow: hidden;
-  position: relative;
-  margin-left: 5px;
-  border-radius: 3px;
-}
+    .qv-object-TabbedContainer_v2 ul.tabs li {
+        float: left;
+        margin: 0;
+        cursor: pointer;
+        padding: 0px 35px;
+        height: 27px;
+        line-height: 27px;
+        background-color: rgb(242, 242, 242);
+        border: 1px solid rgb(229, 229, 229);
+        color: black;
+        overflow: hidden;
+        position: relative;
+        margin-left: 5px;
+        border-radius: 3px;
+    }
 
 .qv-object-TabbedContainer_v2 ul.tabs li:first-child {
   margin-left: 0px;
@@ -116,7 +116,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: #666;
 }
 
 .qv-object-TabbedContainer_v2 .stacked .tab_drawer_heading:hover {
@@ -236,3 +235,5 @@ a{
     text-decoration:underline;
     color: #979797;
 }
+
+/* Selection bar css */
