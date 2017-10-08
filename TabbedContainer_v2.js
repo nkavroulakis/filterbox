@@ -12,14 +12,15 @@ require.config({
     'angular',
     'qlik',
     'text!./TabbedContainer.css',
-    'text!./template.html',
+     'text!./template.html',
     './properties/definition',
     './constants/colors',
     './services/tabService',
     './services/colorsService',
     './services/qlikService',
     './directives/stackedContainer',
-    './directives/exportTable',
+     './directives/exportTable',
+     'css!./assets/font-awesome.min.css',
     //'./directives/detailsCard'
 ],
 
@@ -27,6 +28,13 @@ require.config({
         var colorsService;
 
         $("<style>").html(cssStyles).appendTo("head");
+
+        //var navigationbar = $("div[tid='hKVJYn']");
+        //$("body").prepend(navigationbar);
+        //$(".qui-toolbar").remove();
+
+        //navigationbar.css('width', '100%');
+        //debugger;
 
         return {
             initialProperties: {
@@ -57,6 +65,13 @@ require.config({
                 $element.find('.tab_container').css('border-color', colorsService.toString(tileBorder));
                 $element.find('.tab_content').css('background-color', tileBackground);
                 $(".qv-object-TabbedContainer_v2 .tab_content").css('background-color', "inherit");
+
+                //debugger;
+                //$("div.sheet-title-container").remove();
+                //$("div.qv-subtoolbar-button.borderbox")[1].remove();
+                //$("button.qv-subtoolbar-button.borderbox")[0].remove();
+                //$("button.qv-subtoolbar-button.borderbox")[0].remove();
+
 
 
 
@@ -112,8 +127,9 @@ require.config({
                         var resizeInterval = setInterval(function () {
                         //setTimeout(function () {
                             var extensionID = '#' + $scope.localId + '_' + activeTabId;
-
-                            if ($(extensionID + " article").attr('tid') === '')
+                            //debugger;
+                            console.log('interval if', !$(extensionID + " article").attr('tid'))
+                            if (!$(extensionID + " article").attr('tid'))
                                 return;
 
                         
@@ -135,8 +151,8 @@ require.config({
                                     //debugger;
 
                                     //$(element).css('height', "calc(100% - 4px)");
-
-                                    
+                                    //debugger;
+                                    console.log('Calendar',$(element).find(".aigdatepicker").length)
                                     if ($(element).find(".aigdatepicker").length)
                                     {
                                         $(element).css('height', "200");
@@ -152,6 +168,7 @@ require.config({
 
                             }
                             else {
+                                console.log('To height', $(extensionID + ".tab_content:not(.ng-hide)").css('height', calculatedHeight + "px"))
                                 //$(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
                                 $(extensionID + ".tab_content:not(.ng-hide)").css('height', calculatedHeight + "px");
                                
