@@ -42,3 +42,12 @@ button.aigdatepicker__customrange {
 button.aigdatepicker__td__applyrange {
     border: 0;
 }
+
+button.aigdatepicker__td__applyrange-is-active {
+    background-color:white;
+}
+
+
+.qv-object.qv-object-AigDatePicker {
+    border: 0;
+}

@@ -1,4 +1,5 @@
-define(["qlik", "text!./template.html", "./jquery-ui.min.js", "css!./jquery-ui.min.css", "css!./AigDatePicker.css"],
+define(["qlik", "text!./template.html", "./jquery_calendar/jquery-ui.min", "css!./jquery_calendar/jquery-ui.min.css", "css!./jquery_calendar/jquery-ui.theme.min.css", "css!./jquery_calendar/jquery-ui.structure.min.css", "css!./AigDatePicker.css"],
+    //define(["qlik", "text!./template.html", "./jquery-ui.min.js", "css!./jquery-ui.min.css", "css!./jquery-ui.structure.min.css", "css!./jquery-ui.theme.min.css", "css!./AigDatePicker.css"],
 	function ( qlik, template ) {
 
         return {
@@ -24,12 +25,14 @@ define(["qlik", "text!./template.html", "./jquery-ui.min.js", "css!./jquery-ui.m
 			controller: ['$scope', function ( $scope ) {
                 //add your rendering code here
                 $scope.isCustomRangeActive = false;
+                $scope.whichButtonActive = null;
 
                 $scope.startDate = new Date();
                 $("#datepicker-start-date").datepicker({
                     //setDate: $scope.startDate,
                     onSelect: function (date) { $scope.startDate = date; }
                 });
+                $("#ui-datepicker-div").wrap('<div class="aigcal" />');
                 $("#datepicker-start-date").datepicker("setDate", $scope.startDate);
 
                 $scope.endDate = new Date();
@@ -50,6 +53,7 @@ define(["qlik", "text!./template.html", "./jquery-ui.min.js", "css!./jquery-ui.m
                         
                     if (range === 'YTD')
                     {
+
                         $scope.endDate = new Date();
                         var endDateYear = $scope.endDate.getFullYear().toString();
                         $scope.startDate = new Date(endDateYear);
@@ -67,14 +71,35 @@ define(["qlik", "text!./template.html", "./jquery-ui.min.js", "css!./jquery-ui.m
 
                     }
 
+                    if (range === $scope.whichButtonActive)
+                    {
+                        $scope.whichButtonActive = null;
+                    }
+                    else {
+                        $scope.whichButtonActive = range;
+                    }
+                    
+
+
                 }
 
                 $scope.onClickCustomRange = function () {
-                    $scope.isCustomRangeActive = true
+                    $scope.isCustomRangeActive = !$scope.isCustomRangeActive;
+
+                    if ($scope.isCustomRangeActive)
+                    {
+                        $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css("height", "140px");
+                    }
+                    else
+                    {
+                        $(".qv-object-TabbedContainer_v2 .tab_content:not(.ng-hide)").css("height", "245px");
+                    }
 
                 }
 
+                $scope.decorateButton = function () {
                     
+                }
 
 
 			}]
